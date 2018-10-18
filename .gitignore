@@ -1,0 +1,11 @@
+.idea
+build
+.gradle
+out
+*.bat
+*.yaml
+*.tmp
+
+notes.txt
+temp*
+.env
