@@ -19,7 +19,7 @@ plugins {
 }
 
 group 'com.github.hampsterx'
-version '0.0.1'
+version '0.0.5'
 
 sourceCompatibility = 1.8
 
@@ -69,6 +69,7 @@ compileTestKotlin {
 }
 
 
+
 bintray {
     user = "hampsterx"
     key = System.getenv('BINTRAY_KEY')
@@ -86,6 +87,10 @@ bintray {
             released = new Date()
         }
     }
+}
+
+processResources {
+    exclude('**/logback.xml')
 }
 
 publishing {
