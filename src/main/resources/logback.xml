@@ -1,0 +1,9 @@
+<configuration>
+
+    <appender name="STDOUT" class="ecsLogger.ECSLogAppender"></appender>
+
+    <root level="debug">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>

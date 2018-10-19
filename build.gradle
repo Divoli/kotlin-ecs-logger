@@ -1,3 +1,16 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        //  classpath "com.github.jengelman.gradle.plugins:shadow:2.0.4"
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.5.RELEASE"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.71"
+        //  classpath "gradle.plugin.org.zeroturnaround:gradle-jrebel-plugin:1.1.8"
+    }
+}
+
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.2.71'
 }
@@ -23,10 +36,27 @@ version '0.0.1'
 
 repositories {
     mavenCentral()
+    maven {
+        url "https://jcenter.bintray.com"
+
+    }
 }
 
+apply plugin:"application"
+apply plugin:"kotlin"
+
+mainClassName = "ecsLogger.Logger"
+
 dependencies {
+
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    compile 'net.andreinc.ansiscape:ansiscape:0.0.2'
+    compile "ch.qos.logback:logback-classic:1.2.3"
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.4.1"
+    compile "ch.qos.logback:logback-classic:1.2.3"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.71"
+    compile "org.jetbrains.kotlin:kotlin-reflect:1.2.71"
+
 }
 
 compileKotlin {

@@ -1,3 +1,0 @@
-package ecslogger
-
-class Test
