@@ -140,8 +140,8 @@ object ECSMeta {
             ecs_info = mapper.readValue<ECSInfo>(File(meta_file_path))
         }
 
-        //val cloud_info = mapper.readValue<CloudInfo>(URL("http://169.254.169.254/latest/dynamic/instance-identity/document"))
-        val cloud_info = mapper.readValue<CloudInfo>(File("/opt/cloud_test.json"))
+        val cloud_info = mapper.readValue<CloudInfo>(URL("http://169.254.169.254/latest/dynamic/instance-identity/document"))
+        // val cloud_info = mapper.readValue<CloudInfo>(File("/opt/cloud_test.json"))
 
         return format_data(ecs_info, cloud_info)
 
@@ -263,7 +263,7 @@ class ECSLogAppender : AppenderBase<ILoggingEvent>() {
 
 // todo: replace with unit test
 
-object Logger {
+object LoggerExample {
     @JvmStatic
     fun main(args: Array<String>) {
 
@@ -279,3 +279,4 @@ object Logger {
 
     }
 }
+
