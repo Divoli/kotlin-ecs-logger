@@ -19,7 +19,7 @@ plugins {
 }
 
 group 'com.github.hampsterx'
-version '0.0.7'
+version '0.1.0'
 
 sourceCompatibility = 1.8
 

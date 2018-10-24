@@ -18,6 +18,9 @@ import java.time.ZoneOffset
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import java.lang.*;
+import java.net.URL
+
 
 val JSON_LOGGING = System.getenv("JSON_LOGGING")?: false == "true"
 
@@ -252,8 +255,8 @@ class ECSLogAppender : AppenderBase<ILoggingEvent>() {
                     logInfo.data = event.argumentArray[0] as Map<String, *>
                 }
             }
-
-            val output = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(logInfo)
+            // writerWithDefaultPrettyPrinter
+            val output = mapper.writer().writeValueAsString(logInfo)
 
             println(output)
 
