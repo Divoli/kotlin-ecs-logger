@@ -1,25 +1,19 @@
 buildscript {
     repositories {
-        jcenter()
         mavenCentral()
-        maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        //  classpath "com.github.jengelman.gradle.plugins:shadow:2.0.4"
-        classpath "io.spring.gradle:dependency-management-plugin:1.0.5.RELEASE"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.71"
-        //  classpath "gradle.plugin.org.zeroturnaround:gradle-jrebel-plugin:1.1.8"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
     }
 }
 
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.2.71'
+    id 'org.jetbrains.kotlin.jvm' version '1.6.10'
     id 'java'
-    id "com.jfrog.bintray" version "1.8.1"
 }
 
-group 'com.github.hampsterx'
-version '0.1.0'
+group 'com.devoli'
+version '0.2.0'
 
 sourceCompatibility = 1.8
 
@@ -28,78 +22,23 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
 }
 
-repositories {
-    mavenCentral()
-    maven {
-        url "https://jcenter.bintray.com"
-
-    }
-}
-
-apply plugin:"application"
-apply plugin:"kotlin"
+apply plugin: "application"
+apply plugin: "kotlin"
 apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: 'maven-publish'
-apply plugin: 'com.jfrog.bintray'
-
 
 mainClassName = "ecsLogger.LoggerExample"
 
 dependencies {
-
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    compile 'net.andreinc.ansiscape:ansiscape:0.0.2'
-    compile "ch.qos.logback:logback-classic:1.2.3"
-    compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.4.1"
-    compile "ch.qos.logback:logback-classic:1.2.3"
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.71"
-    compile "org.jetbrains.kotlin:kotlin-reflect:1.2.71"
-
-}
-
-compileKotlin {
-    kotlinOptions.jvmTarget = "1.8"
-}
-compileTestKotlin {
-    kotlinOptions.jvmTarget = "1.8"
-}
-
-
-
-bintray {
-    user = "hampsterx"
-    key = System.getenv('BINTRAY_KEY')
-    publications = ['MyPublication']
-    publish=true
-
-    pkg {
-        repo = 'maven'
-        name = 'ecs-logger'
-        licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/hampsterx/kotlin-ecs-logger.git'
-
-        version {
-            name = project.version
-            released = new Date()
-        }
-    }
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.13.1"
+    implementation 'ch.qos.logback:logback-classic:1.2.10'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.71"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.6.10"
 }
 
 processResources {
     exclude('**/logback.xml')
-}
-
-publishing {
-    publications {
-        MyPublication(MavenPublication) {
-            from components.java
-            groupId = project.group
-            artifactId = "ecslogger"
-            version = project.version
-        }
-    }
 }

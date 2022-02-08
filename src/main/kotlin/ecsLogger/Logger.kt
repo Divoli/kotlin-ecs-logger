@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import net.andreinc.ansiscape.AnsiScape
 import org.slf4j.LoggerFactory
 import java.io.File
 import java.text.SimpleDateFormat
@@ -23,8 +22,6 @@ import java.net.URL
 
 
 val JSON_LOGGING = System.getenv("JSON_LOGGING")?: false == "true"
-
-var asciiScape = AnsiScape()
 
 val mapper = jacksonObjectMapper()
 
@@ -214,17 +211,8 @@ class ECSLogAppender : AppenderBase<ILoggingEvent>() {
 
     override fun append(event: ILoggingEvent) {
 
-        if (JSON_LOGGING == false){
-            var color = "white"
-            when(event.level){
-                Level.INFO -> color = "green"
-                Level.DEBUG -> color = "blue"
-                Level.WARN -> color = "orange"
-                Level.ERROR -> color = "red"
-            }
-
-            println(asciiScape.format(event.loggerName + " {"+ color + " " + event.level + "} " + event.formattedMessage))
-
+        if (!JSON_LOGGING){
+            println(event.loggerName + " {" + event.level + "} " + event.formattedMessage)
         } else {
 
             val logInfo = LogInfo(
