@@ -1,10 +1,8 @@
 buildscript {
     repositories {
         mavenCentral()
-        maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath "io.spring.gradle:dependency-management-plugin:1.0.5.RELEASE"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
     }
 }
@@ -27,8 +25,8 @@ dependencies {
     testImplementation group: 'junit', name: 'junit', version: '4.12'
 }
 
-apply plugin:"application"
-apply plugin:"kotlin"
+apply plugin: "application"
+apply plugin: "kotlin"
 apply plugin: 'java'
 
 mainClassName = "ecsLogger.LoggerExample"
@@ -39,13 +37,6 @@ dependencies {
     implementation 'ch.qos.logback:logback-classic:1.2.10'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.71"
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.6.10"
-}
-
-compileKotlin {
-    kotlinOptions.jvmTarget = "1.8"
-}
-compileTestKotlin {
-    kotlinOptions.jvmTarget = "1.8"
 }
 
 processResources {
